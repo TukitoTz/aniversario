@@ -1,0 +1,450 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Feliz Aniversario 💙</title>
+    <style>
+        :root {
+            --bg1: #0f172a;
+            --bg2: #111827;
+            --card: rgba(255,255,255,.08);
+            --card2: rgba(255,255,255,.12);
+            --txt: #e5e7eb;
+            --muted: #cbd5e1;
+            --accent: #60a5fa;
+            --accent2: #a78bfa;
+            --ok: #34d399;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--txt);
+            background: radial-gradient(900px 500px at 15% 10%, rgba(96,165,250,.25), transparent 60%), radial-gradient(700px 450px at 80% 20%, rgba(167,139,250,.22), transparent 55%), linear-gradient(180deg, var(--bg1), var(--bg2));
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 28px 16px 60px;
+        }
+
+        header {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 18px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+            border: 1px solid rgba(255,255,255,.10);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 18px 40px rgba(0,0,0,.25);
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: .2px
+        }
+
+        .title p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.12);
+            font-size: 13px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+            .pill b {
+                color: var(--txt);
+                font-weight: 650
+            }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        @media (min-width:860px) {
+            .grid {
+                grid-template-columns: 1.1fr .9fr;
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, var(--card), rgba(255,255,255,.05));
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,.20);
+            backdrop-filter: blur(8px);
+        }
+
+            .card h2 {
+                margin: 0 0 10px;
+                font-size: 16px
+            }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .stat {
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.10);
+            text-align: center;
+        }
+
+            .stat .n {
+                font-size: 18px;
+                font-weight: 750
+            }
+
+            .stat .l {
+                font-size: 12px;
+                color: var(--muted);
+                margin-top: 3px
+            }
+
+        .btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px
+        }
+
+        button {
+            cursor: pointer;
+            border: 0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(96,165,250,.95), rgba(167,139,250,.95));
+            color: #071225;
+            font-weight: 800;
+            box-shadow: 0 14px 28px rgba(0,0,0,.25);
+        }
+
+            button.secondary {
+                background: rgba(255,255,255,.09);
+                color: var(--txt);
+                border: 1px solid rgba(255,255,255,.14);
+                box-shadow: none;
+                font-weight: 650;
+            }
+
+        .note {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(52,211,153,.10);
+            border: 1px solid rgba(52,211,153,.25);
+            display: none;
+        }
+
+            .note.show {
+                display: block
+            }
+
+            .note b {
+                color: var(--ok)
+            }
+
+        .letter {
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.10);
+            white-space: pre-wrap;
+            line-height: 1.6;
+            color: var(--txt);
+        }
+
+        .gallery {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+            .gallery img {
+                width: 100%;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 14px;
+                border: 1px solid rgba(255,255,255,.10);
+                transition: transform .2s ease, filter .2s ease;
+                filter: saturate(1.05) contrast(1.05);
+            }
+
+                .gallery img:hover {
+                    transform: translateY(-2px) scale(1.01)
+                }
+
+        @media (min-width:860px) {
+            .gallery img {
+                height: 130px
+            }
+        }
+
+        /* Modal para ver fotos grandes */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            background: rgba(0,0,0,.70);
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+        }
+
+            .modal.show {
+                display: flex
+            }
+
+            .modal img {
+                max-width: min(920px, 96vw);
+                max-height: 86vh;
+                border-radius: 18px;
+                border: 1px solid rgba(255,255,255,.14);
+                box-shadow: 0 24px 80px rgba(0,0,0,.55);
+            }
+
+        .footer {
+            margin-top: 18px;
+            color: rgba(203,213,225,.85);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .heart {
+            color: #fb7185
+        }
+
+        .spark {
+            color: #93c5fd
+        }
+
+        a {
+            color: var(--accent)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="title">
+                <h1>Feliz aniversario, <span id="herName">Amor</span> <span class="heart">❤</span></h1>
+                <p>Esto es para ti mi niña preciosa. <span class="spark">✨</span></p>
+            </div>
+            <div class="pill">
+                <span>Nosotros desde</span>
+                <b id="sinceText">—</b>
+            </div>
+        </header>
+
+        <div class="grid">
+            <section class="card">
+                <h2>⏳ Nuestro tiempo juntos</h2>
+                <p class="muted">Cada día contigo vale oro. Mira cuánto hemos vivido desde que empezamos.</p>
+
+                <div class="stats" aria-label="Contador de tiempo juntos">
+                    <div class="stat"><div class="n" id="d">0</div><div class="l">días</div></div>
+                    <div class="stat"><div class="n" id="h">0</div><div class="l">horas</div></div>
+                    <div class="stat"><div class="n" id="m">0</div><div class="l">minutos</div></div>
+                    <div class="stat"><div class="n" id="s">0</div><div class="l">segundos</div></div>
+                </div>
+
+                <div class="btns">
+                    <button id="btnSurprise">🎁 Ver sorpresa</button>
+                    
+                </div>
+
+                <div class="note" id="surpriseBox">
+                    <div><b>TE AMO:</b> hoy y siempre elijo cuidarte, escucharte y hacerte reír.</div>
+                    <div style="margin-top:6px;">Gracias por ser mi lugar favorito, mi mejor amiga, mi compañera de vida, mi vida y todo lo mas importante. <span class="heart">❤</span></div>
+                </div>
+
+                <audio id="audio" src="music.mp3" preload="auto"></audio>
+            </section>
+
+            <section class="card">
+                <h2>💌 Carta para el amor de mi vida</h2>
+                <div class="letter" id="letter">
+                    Amor mi niña,
+
+                    Hoy celebramos lo nuestro y me siento afortunado.
+                    Gracias por estar siempre conmigo y tenerme paciencia, por ser mi novia.
+                    Eres el amor de mi vida y no me cansare de decirtelo, aunque estemos lejos,
+                    espero con ansias ya conocerte para besarte, tomarte de la mano, y darte todo
+                    lo que te mereces por ser la novia mas linda preciosa inteligente y tan dulce,
+                    te amo mi amor y siempre lo hare, tengo muchos planes que imagine a tu lado,
+                    y tambien quiero que tengamos una familia, ya que tu seria una grandiosa esposita,
+                    y tambien una grandiosa mamá te amo tanto, muy pronto estaremos juntos mi niñita,
+                    contigo soy el mas afortunado al tenerte mi amor, gracias por ser mi novia
+
+                    Quiero seguir construyendo contigo: más risas, más planes, más sueños.
+                    Te amo.
+
+                    — <span id="myName">Tu amorcito</span>
+                </div>
+            </section>
+        </div>
+
+        <section class="card" style="margin-top:16px">
+            <h2>📸 Nuestros recuerdos</h2>
+            <p class="muted">Haz clic en una foto para verla grande.</p>
+
+            <div class="gallery" id="gallery">
+                <!-- Cambia estas rutas por tus fotos -->
+                <img src="img/1.jpg" alt="Recuerdo 1" />
+                <img src="img/2.jpg" alt="Recuerdo 2" />
+                <img src="img/3.jpg" alt="Recuerdo 3" />
+                <img src="img/4.jpg" alt="Recuerdo 4" />
+                <img src="img/5.jpg" alt="Recuerdo 5" />
+                <img src="img/6.jpg" alt="Recuerdo 6" />
+            </div>
+
+            <div class="footer">
+                Hecho con <span class="heart">❤</span> para <span id="herName2">Amor</span> — <span id="today"></span>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="modal">
+        <img id="modalImg" alt="Foto ampliada" />
+    </div>
+
+    <script>
+    // ====== PERSONALIZA AQUÍ ======
+    const CONFIG = {
+      miNombre: "Joseph",           // <- tu nombre
+      suNombre: "Mi Amor",          // <- nombre de tu novia
+      // Fecha desde la que están juntos (AAAA-MM-DD). Ej: "2023-04-15"
+      fechaInicio: "2025-09-14",
+      // Hora opcional (24h) si quieres exactitud: "20:30" (o deja null)
+      horaInicio: null
+    };
+
+    // ====== LÓGICA ======
+    const $ = (id)=>document.getElementById(id);
+
+    $("myName").textContent = CONFIG.miNombre;
+    $("herName").textContent = CONFIG.suNombre;
+    $("herName2").textContent = CONFIG.suNombre;
+
+    // Fecha "desde"
+    const [Y,M,D] = CONFIG.fechaInicio.split("-").map(Number);
+    let start = new Date(Y, M-1, D, 0, 0, 0);
+
+    if (CONFIG.horaInicio){
+      const [hh, mm] = CONFIG.horaInicio.split(":").map(Number);
+      start = new Date(Y, M-1, D, hh, mm, 0);
+    }
+
+    // Mostrar fecha bonita
+    const fmt = new Intl.DateTimeFormat("es-PE", { dateStyle:"long" });
+    $("sinceText").textContent = fmt.format(start);
+
+    // Hoy
+    $("today").textContent = fmt.format(new Date());
+
+    function tick(){
+      const now = new Date();
+      let diff = Math.max(0, now - start); // ms
+
+      const totalSeconds = Math.floor(diff/1000);
+      const days = Math.floor(totalSeconds / (3600*24));
+      const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      $("d").textContent = days.toString();
+      $("h").textContent = hours.toString().padStart(2,"0");
+      $("m").textContent = minutes.toString().padStart(2,"0");
+      $("s").textContent = seconds.toString().padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // Sorpresa
+    $("btnSurprise").addEventListener("click", ()=>{
+      $("surpriseBox").classList.toggle("show");
+    });
+
+    // Música
+    const audio = $("audio");
+    let playing = false;
+    $("btnMusic").addEventListener("click", ()=>{
+      // Si no existe music.mp3, el navegador simplemente no reproducirá.
+      if (!playing){
+        audio.volume = 0.6;
+        audio.play().then(()=>{
+          playing = true;
+          $("btnMusic").textContent = "⏸️ Pausar música";
+        }).catch(()=>{
+          alert("No encontré el archivo music.mp3. Ponlo junto a index.html o cambia el nombre.");
+        });
+      } else {
+        audio.pause();
+        playing = false;
+        $("btnMusic").textContent = "🎵 Música (opcional)";
+      }
+    });
+
+    // Tips fotos
+    $("btnDownload").addEventListener("click", ()=>{
+      alert(
+`Cómo poner tus fotos:
+1) Crea carpeta "img" junto a index.html
+2) Mete tus fotos ahí (1.jpg, 2.jpg, 3.jpg...)
+3) Edita las líneas <img src="img/1.jpg"> etc.
+Listo 🙂`
+      );
+    });
+
+    // Modal galería
+    const modal = $("modal");
+    const modalImg = $("modalImg");
+    $("gallery").addEventListener("click", (e)=>{
+      if (e.target.tagName === "IMG"){
+        modalImg.src = e.target.src;
+        modal.classList.add("show");
+      }
+    });
+    modal.addEventListener("click", ()=>{
+      modal.classList.remove("show");
+      modalImg.src = "";
+    });
+    </script>
+</body>
+</html>
